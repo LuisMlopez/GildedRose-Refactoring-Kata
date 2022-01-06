@@ -2,18 +2,15 @@
 import unittest
 
 from gilded_rose import GildedRose
-from item import Item
+from aged_brie import AgedBrie
+from backstage import Backstage
+from sulfuras import Sulfuras
+from pepe import Pepe
 
 
 class GildedRoseTest(unittest.TestCase):
-    def test_foo(self):
-        items = [Item("foo", 0, 0)]
-        gilded_rose = GildedRose(items)
-        gilded_rose.update_quality()
-        self.assertEquals("foo", items[0].name)
-
     def test_aged_brie_decrease_sell_in(self):
-        item = Item('Aged Brie', 10, 50)
+        item = AgedBrie(10, 50)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -23,7 +20,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(50, item.quality)
 
     def test_aged_brie_increase_quality(self):
-        item = Item('Aged Brie', 10, 40)
+        item = AgedBrie(10, 40)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -33,7 +30,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(41, item.quality)
 
     def test_aged_brie_sellig_less_than_zero(self):
-        item = Item('Aged Brie', 0, 40)
+        item = AgedBrie(0, 40)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -43,7 +40,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(42, item.quality)
 
     def test_backstage_decrease_sell_in(self):
-        item = Item('Backstage passes to a TAFKAL80ETC concert', 10, 50)
+        item = Backstage(10, 50)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -53,7 +50,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(50, item.quality)
 
     def test_backstage_increase_quality(self):
-        item = Item('Backstage passes to a TAFKAL80ETC concert', 10, 40)
+        item = Backstage(10, 40)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -62,8 +59,18 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(9, item.sell_in)
         self.assertEquals(42, item.quality)
 
+    def test_backstage_increase_quality_2(self):
+        item = Backstage(6, 48)
+        items = [item]
+
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+
+        self.assertEquals(5, item.sell_in)
+        self.assertEquals(50, item.quality)
+
     def test_backstage_sellig_less_than_zero(self):
-        item = Item('Backstage passes to a TAFKAL80ETC concert', 0, 40)
+        item = Backstage(0, 40)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -73,7 +80,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(0, item.quality)
 
     def test_sulfuras_decrease_sell_in(self):
-        item = Item('Sulfuras, Hand of Ragnaros', 10, 50)
+        item = Sulfuras(10, 50)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -83,7 +90,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(50, item.quality)
 
     def test_sulfuras_increase_quality(self):
-        item = Item('Sulfuras, Hand of Ragnaros', 10, 40)
+        item = Sulfuras(10, 40)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -93,7 +100,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(40, item.quality)
 
     def test_sulfuras_sellig_less_than_zero(self):
-        item = Item('Sulfuras, Hand of Ragnaros', 0, 40)
+        item = Sulfuras(0, 40)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -103,7 +110,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(40, item.quality)
 
     def test_pepe_decrease_sell_in(self):
-        item = Item('Pepe', 10, 50)
+        item = Pepe(10, 50)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -113,7 +120,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(49, item.quality)
 
     def test_pepe_increase_quality(self):
-        item = Item('Pepe', 10, 40)
+        item = Pepe(10, 40)
         items = [item]
 
         gilded_rose = GildedRose(items)
@@ -123,7 +130,7 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(39, item.quality)
 
     def test_pepe_sellig_less_than_zero(self):
-        item = Item('Pepe', 0, 40)
+        item = Pepe(0, 40)
         items = [item]
 
         gilded_rose = GildedRose(items)
